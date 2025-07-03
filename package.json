@@ -1,0 +1,28 @@
+{
+  "name": "nexus",
+  "version": "1.0.0",
+  "description": "The definitive ERLC integration bot.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/HamzaQaz/NexusIntegration.git"
+  },
+  "keywords": [
+    "ERLC",
+    "INTEGRATION"
+  ],
+  "author": "night.dev",
+  "license": "SEE LICENSE IN LICENSE.txt",
+  "bugs": {
+    "url": "https://github.com/HamzaQaz/NexusIntegration/issues"
+  },
+  "homepage": "https://github.com/HamzaQaz/NexusIntegration#readme",
+  "dependencies": {
+    "discord.js": "^14.21.0",
+    "mongodb": "^6.17.0",
+    "mongoose": "^8.16.1"
+  }
+}
