@@ -4,7 +4,9 @@ const mongoose = require('mongoose');
 const client = new Client({
     intents: [
         'Guilds',
-        'GuildMembers'
+        'GuildMembers',
+        'GuildMessages',
+        'DirectMessages'
     ]
 });
 
