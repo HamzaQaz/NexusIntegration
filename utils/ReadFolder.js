@@ -1,3 +1,4 @@
+const { default: chalk } = require('chalk');
 const fs = require('node:fs');
 
 /* {
@@ -42,7 +43,7 @@ function ReadFolder(path = '', depth = 3) {
 		} catch (error) {
 			// Safety first!
 			// Will only fire if you have weird permissions on your file system lol
-			console.error(`Failed to load ./${path}/${file.name}: ${error.stack || error}`);
+			console.error(chalk.magentaBright(`FOLDER`), chalk.red(`Failed to load ./${path}: ${error.stack || error}`)); 
 		}
 	}
 }

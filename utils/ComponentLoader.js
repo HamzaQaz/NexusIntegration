@@ -1,6 +1,7 @@
 const ReadFolder = require('./ReadFolder.js');
 const { existsSync } = require('node:fs');
 const { SlashCommandBuilder } = require('@discordjs/builders');
+const { default: chalk } = require('chalk');
 
 // List of all the folders we want to load from
 const modules = [
@@ -26,27 +27,31 @@ module.exports = function (client) {
 		for (const { path, data } of files) {
 			try {
 				// Basic checking, every file must have an execute function
-				if (!data.execute) throw `No execute function found`;
-				if (typeof data.execute !== 'function') throw `Execute is not a function`;
+				if (!data.execute) throw chalk.red(`No execute function found`)
+				if (typeof data.execute !== 'function') throw chalk.red(`Execute is not a function`);
 
 				if (module === 'commands') {
 					// If it is a command we check it has a data property
-					if (!(data.data instanceof SlashCommandBuilder)) throw 'Invalid command - Must use the slash command builder';
+					if (!(data.data instanceof SlashCommandBuilder)) throw chalk.red('Invalid command - Must use the slash command builder');
 					// And then add it to the cache by name
 					client[module].set(data.data.name, data);
 				} else {
 					// Anything else uses customIDs
-					if (!data.customID) throw 'No custom ID has been set';
-					if (typeof data.customID !== 'string') throw 'Invalid custom ID - Must be string';
+					if (!data.customID) throw chalk.red('No custom ID has been set');
+					if (typeof data.customID !== 'string') throw chalk.red('Invalid custom ID - Must be string');
 					// And then add it to the cache by customID
 					client[module].set(data.customID, data);
 				}
 			} catch (error) {
 				// These are the errors you will see :D
-				console.error(`[${module.toUpperCase()}] Failed to load ./${path}: ${error.stack || error}`);
+				
+				console.error(chalk.magentaBright(`${module.toUpperCase()}`), chalk.red(`Failed to load ./${path}: ${error.stack || error}`)); 
 			}
 
 		}
-		console.log(`Loaded ${client[module].size} ${module}`)
+		
+		console.log(chalk.magentaBright(`${module.toUpperCase()}`), chalk.green(`Loaded ${client[module].size}`));
+		
+
 	}
 };

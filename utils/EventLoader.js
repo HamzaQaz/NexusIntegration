@@ -1,6 +1,7 @@
 const fs = require('node:fs');
 const { Events } = require('discord.js');
 const ReadFolder = require('./ReadFolder.js');
+const { default: chalk } = require('chalk');
 
 module.exports = function (client) {
 	// Skip if the events folder was deleted
@@ -40,5 +41,7 @@ module.exports = function (client) {
 		client[data.once ? 'once' : 'on'](data.name, data.execute.bind(null, client));
 	}
 	
-	console.log(`Loaded ${files.length} events!`);
+	
+	console.log(chalk.magentaBright(`EVENTS`), chalk.green(`Loaded ${files.length}`))
+	
 }

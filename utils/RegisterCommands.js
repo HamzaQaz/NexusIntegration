@@ -1,9 +1,10 @@
 const { REST } = require('@discordjs/rest');
+const { default: chalk } = require('chalk');
 const { Routes } = require('discord-api-types/v10');
 
 module.exports = (client) => {
 
-    console.log('Started refreshing application (/) commands.');
+    console.log(chalk.magentaBright('REGISTER'), chalk.green('Started refreshing application (/) commands.'));
     
 	// Just buckets for everything lol
     const commands = [];
@@ -15,7 +16,7 @@ module.exports = (client) => {
         const commandData = command.data?.toJSON();
         commandData.dm_permission ??= false; // dms disabled by default
         try {
-            if (!commandData) throw `No command.data found - Did you forget to save the file?`;
+            if (!commandData) throw chalk.magentaBright('REGISTER'), chalk.red('No command.data found'), chalk.gray('-'), chalk.redBright('Did you forget to save the file?')
 			// If the command is already registered, skip it
             if (commandNames.includes(commandData?.name)) continue;
 			// Add the command name to the list so we can check for duplicates
@@ -27,14 +28,15 @@ module.exports = (client) => {
                 commands.push(commandData);
             }
         } catch(error) {
-            console.error(`[REGISTER] Failed to register ${command.data.name}: ${error}`);
+            console.log(chalk.magentaBright('REGISTER'), chalk.yellow('Failed to register'), chalk.gray(':'), chalk.redBright(`${error}`));
         }
     }
 
 	// Error if you set a dev command but no guild ID
 	// Nothing will break but it won't register the commands
     if (devCommands.length > 0 && !client.config.DEV_GUILD_ID) {
-        console.warn(`You have dev commands but no DEV_GUILD_ID in config.json - These will not be registered!`);
+        console.log(chalk.magentaBright('REGISTER'), chalk.yellow('You have dev commands but no DEV_GUILD_ID in config.json'), chalk.gray('-'), chalk.redBright('These will not be registered!'));
+        
     }
 
     const rest = new REST({ version: '10' }).setToken(client.config.TOKEN);
@@ -54,7 +56,8 @@ module.exports = (client) => {
             );
         }
 
-        console.info('Successfully reloaded application (/) commands.');
+        
+        console.log(chalk.magentaBright('REGISTER'), chalk.green('Successfully reloaded application (/) commands.'));
     } catch (error) {
         console.error(error);
     }
