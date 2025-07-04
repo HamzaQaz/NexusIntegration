@@ -1,5 +1,5 @@
 const { SlashCommandBuilder } = require('discord.js');
-const testschema = require('../schemas/test');
+const testschema = require('../schemas/testdb');
 
 module.exports = {
     admin: true,

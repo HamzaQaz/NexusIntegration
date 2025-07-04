@@ -30,8 +30,8 @@ require('./utils/RegisterCommands.js')(client);
 // [Application startup] -> [Database connection] -> [client.login()] -> [Discord responds] -> [Ready event]
 /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 ( async function() {
-	if (!client.config.mongoURL) return console.warn('MongoDB URL is not provided in the config.json file, skipping database connection...');
-	await mongoose.connect(client.config.mongoURL);
+	if (!client.config.MONGOURL) return console.warn('MongoDB URL is not provided in the config.json file, skipping database connection...');
+	await mongoose.connect(client.config.MONGOURL);
 })();
 
 console.log(`Logging in...`);
