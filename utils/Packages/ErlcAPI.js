@@ -10,7 +10,7 @@ module.exports = function validateKey(apikey, guild){
         async function validate(apikey) {
             const response = await fetch('https://api.policeroleplay.community/v1/server', {
                 headers: {
-                    'Server-Key': 'LLRnRYBcdSrFHVmMSwjv-rlqJgydZXKhkmyopCFxNspbYliBVLePmZxesVmQa'
+                    'Server-Key': apikey
                 }
             })
             const data = await response.json()
