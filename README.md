@@ -26,7 +26,7 @@ The CC BY-NC-SA license requires the following elements:
 
 ## Project Status
 <a href="[YOUR_UPTIME_LINK]">
-  <img src="https://img.shields.io/badge/Status-Online-brightgreen" alt="Uptime Status">
+  <img src="https://img.shields.io/badge/Status-Offline-brightred" alt="Uptime Status">
 </a>
 <a href="https://www.codefactor.io/repository/github/hamzaqaz/nexusintegration"><img src="https://www.codefactor.io/repository/github/hamzaqaz/nexusintegration/badge" alt="CodeFactor" /></a>
 
